@@ -93,7 +93,7 @@ module StateManager
     def send_event(name, *args)
       self.current_event = name
       state = find_state_for_event(name)
-      raise(InvalidEvent, name) unless state
+      raise(InvalidEvent, "#{name} on #{current_state}") unless state
       result = state.perform_event name, *args
       self.current_event = nil
       result
